@@ -6,6 +6,7 @@ export * from './randzu/index.js';
 export * from './checkers/index.js';
 export * from './arkanoid/index.js';
 export * from './thimblerig/index.js';
+export * from './2048/index.js';
 
 export * from './engine/index.js';
 export * from './framework/index.js';

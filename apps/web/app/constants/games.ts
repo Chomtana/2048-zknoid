@@ -151,4 +151,21 @@ export const defaultGames: IGame[] = [
     rating: 0,
     externalUrl: 'https://proto.zknoid.io/games/checkers/global',
   },
+  {
+    id: '2048',
+    logo: '/image/games/lottery.svg',
+    logoMode: LogoMode.FULL_WIDTH,
+    name: '2048 game',
+    description:
+      'Ticket based lottery game. Choose lucky numbers, buy tickets, win rewards',
+    genre: ZkNoidGameGenre.Lucky,
+    features: [ZkNoidGameFeature.SinglePlayer],
+    defaultPage: 'global',
+    active: true,
+    isReleased: true,
+    releaseDate: new Date(2023, 11, 1),
+    popularity: 60,
+    author: 'ZkNoid Team',
+    rating: 0,
+  },
 ];

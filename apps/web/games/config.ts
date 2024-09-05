@@ -7,6 +7,7 @@ import { pokerConfig } from '@/games/poker/config';
 import { tileVilleConfig } from '@/games/tileville/config';
 import { lotteryConfig } from '@/games/lottery/config';
 import { numberGuessingConfig } from './number_guessing/config';
+import { game2048Config } from './2048/config';
 
 export const zkNoidConfig = createConfig({
   games: [
@@ -17,6 +18,7 @@ export const zkNoidConfig = createConfig({
     thimblerigConfig,
     pokerConfig,
     arkanoidConfig,
-    numberGuessingConfig
+    numberGuessingConfig,
+    game2048Config,
   ],
 });
