@@ -16,6 +16,8 @@ import { ThemeName } from './themes/types';
 import useTheme from './hooks/useTheme';
 import { canGameContinue, isWin } from './utils/rules';
 import Button from './components/Button';
+import Image from 'next/image';
+import Logo2048 from './assets/logo-2048.svg';
 
 export type Configuration = {
   theme: ThemeName;
@@ -150,7 +152,7 @@ const Game2048Board: FC<Game2048BoardParams> = ({
 
             <Button onClick={onResetGame}>
               <Text fontSize={16} textTransform="capitalize">
-                New Game
+                {gameStarted ? 'New Game' : 'Start Game'}
               </Text>
             </Button>
 
@@ -168,18 +170,55 @@ const Game2048Board: FC<Game2048BoardParams> = ({
               onChangeCol={setCols}
             />
           </Box> */}
-          <GameBoard
-            tiles={tiles}
-            boardSize={GRID_SIZE}
-            rows={rows}
-            cols={cols}
-            spacing={SPACING}
-            gameStatus={gameState.status}
-            onMove={onMove}
-            onMovePending={onMovePending}
-            onMergePending={onMergePending}
-            onCloseNotification={onCloseNotification}
-          />
+
+          <div style={{ position: 'relative' }}>
+            <GameBoard
+              tiles={tiles}
+              boardSize={GRID_SIZE}
+              rows={rows}
+              cols={cols}
+              spacing={SPACING}
+              gameStatus={gameState.status}
+              onMove={onMove}
+              onMovePending={onMovePending}
+              onMergePending={onMergePending}
+              onCloseNotification={onCloseNotification}
+            />
+
+            {!gameStarted &&
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: '#FFFFFFAA'
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <div>
+                    <Image className="h-24 w-24 mb-5" src={Logo2048} alt={"2048 logo"} />
+                  </div>
+
+                  <Button onClick={onResetGame}>
+                    <Text fontSize={16} textTransform="capitalize">
+                      Start Game
+                    </Text>
+                  </Button>
+                </div>
+              </div>
+            }
+          </div>
         </Box>
       </Box>
     </ThemeProvider>
