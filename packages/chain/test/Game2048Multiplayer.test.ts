@@ -2,20 +2,20 @@ import { AppChain, TestingAppChain } from '@proto-kit/sdk';
 import { Field, Int64, PrivateKey, PublicKey, UInt64 } from 'o1js';
 import { log } from '@proto-kit/common';
 import { Pickles } from 'o1js/dist/node/snarky';
-import { Balances, Game2048Logic } from '../src';
+import { Balances, Game2048MultiplayerLogic } from '../src';
 
 log.setLevel('ERROR');
 
 describe('game hub', () => {
   it('Two players basic case', async () => {
     const appChain = TestingAppChain.fromRuntime({
-      Game2048Logic,
+      Game2048MultiplayerLogic,
       Balances,
     });
 
     appChain.configurePartial({
       Runtime: {
-        Game2048Logic: {},
+        Game2048MultiplayerLogic: {},
         Balances: {
           totalSupply: UInt64.from(10000),
         },
@@ -30,7 +30,7 @@ describe('game hub', () => {
 
     await appChain.start();
 
-    const game2048 = appChain.runtime.resolve('Game2048Logic');
+    const game2048 = appChain.runtime.resolve('Game2048MultiplayerLogic');
 
     console.log('Finding match');
     // Find match
@@ -57,9 +57,9 @@ describe('game hub', () => {
       expect(block?.transactions[0].status.toBoolean()).toBeTruthy();
 
       let aliceGameId =
-        await appChain.query.runtime.Game2048Logic.activeGameId.get(alice);
+        await appChain.query.runtime.Game2048MultiplayerLogic.activeGameId.get(alice);
       let bobGameId =
-        await appChain.query.runtime.Game2048Logic.activeGameId.get(bob);
+        await appChain.query.runtime.Game2048MultiplayerLogic.activeGameId.get(bob);
 
       console.log(aliceGameId?.toString());
       expect(aliceGameId!.equals(bobGameId!)).toBeTruthy();

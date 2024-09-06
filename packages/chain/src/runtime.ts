@@ -6,7 +6,7 @@ import { Balances } from './framework';
 import { ModulesConfig } from '@proto-kit/common';
 import { CheckersLogic } from './checkers';
 import { GuessGame } from './number_guessing';
-import { Game2048Logic } from './2048';
+import { Game2048 } from './2048';
 
 const modules = {
   ArkanoidGameHub,
@@ -15,7 +15,7 @@ const modules = {
   RandzuLogic,
   CheckersLogic,
   GuessGame,
-  Game2048Logic,
+  Game2048,
 };
 
 const config: ModulesConfig<typeof modules> = {
@@ -27,7 +27,7 @@ const config: ModulesConfig<typeof modules> = {
   RandzuLogic: {},
   CheckersLogic: {},
   GuessGame: {},
-  Game2048Logic: {},
+  Game2048: {},
 };
 
 export default {

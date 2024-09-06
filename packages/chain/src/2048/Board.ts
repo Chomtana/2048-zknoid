@@ -127,10 +127,7 @@ export class Board {
     for (let i = 0; i < BOARD_ROWS; i++) {
       for (let j = 0; j < BOARD_COLS; j++) {
         // is this the cell the player wants to play?
-        const toUpdate = r.equals(new Field(i)).and(c.equals(new Field(j)));
-
-        // make sure we can add a tile there
-        toUpdate.implies(this.board[i][j].equals(UInt32.zero)).assertEquals(true);
+        const toUpdate = r.equals(new Field(i)).and(c.equals(new Field(j))).and(this.board[i][j].equals(UInt32.zero));
 
         // copy the board (or update if this is the cell the player wants to play)
         this.board[i][j] = Provable.if(
